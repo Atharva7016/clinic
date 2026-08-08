@@ -1,0 +1,4 @@
+/**
+ * Page-level views mapped to routes (Home, Login, Dashboard, Patients, etc.).
+ * Each page may compose layouts + components.
+ */

@@ -1,0 +1,4 @@
+/**
+ * Shared layout shells (PublicLayout, DashboardLayout, AuthLayout).
+ * Layouts typically wrap <Outlet /> from React Router.
+ */

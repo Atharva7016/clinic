@@ -1,0 +1,37 @@
+/**
+ * Extra component polish that is awkward in Tailwind alone.
+ * Keep this file lean — prefer utility classes first.
+ */
+
+/* Masonry-like gallery on wide screens */
+.gallery-masonry {
+  columns: 1;
+  column-gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .gallery-masonry {
+    columns: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gallery-masonry {
+    columns: 3;
+  }
+}
+
+.gallery-masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1.25rem;
+}
+
+/* Hide scrollbar for testimonial track on mobile swipe */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

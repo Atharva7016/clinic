@@ -1,0 +1,4 @@
+/**
+ * Reusable UI components (buttons, forms, cards, tables, etc.).
+ * Keep presentational components here; page-level composition stays in pages/.
+ */
