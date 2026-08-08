@@ -113,7 +113,7 @@ curl http://localhost:5000/api/health
 
 curl -X POST http://localhost:5000/api/auth/login ^
   -H "Content-Type: application/json" ^
-  -d "{\"email\":\"admin@shreevishwaprabha.com\",\"password\":\"ChangeMe123!\"}"
+  -d "{\"email\":\"YOUR_ADMIN_EMAIL\",\"password\":\"YOUR_ADMIN_PASSWORD\"}"
 ```
 
 Use the returned `token` as `Authorization: Bearer <token>` for protected routes.
