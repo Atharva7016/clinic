@@ -1,6 +1,17 @@
-# Shree VishwaPrabha Ayurved Clinic — Full Stack
+# Shree VishwaPrabha Ayurved Clinic
 
-Production-oriented website and admin panel for **Shree VishwaPrabha Ayurved And Panchakarma Clinic** (Thane), featuring Dr. Gauri Patil (BAMS, MD(Ayu)).
+The **Shree VishwaPrabha Ayurved Clinic** web application is a production-ready full-stack project built using the **MERN stack**, with a strong emphasis on frontend polish, patient experience, and practical clinic operations. It demonstrates a complete digital presence for an Ayurvedic clinic — from a bilingual public website to a secure admin panel for day-to-day management.
+
+Designed for **Shree VishwaPrabha Ayurved And Panchakarma Clinic** (Thane) under **Dr. Gauri Patil (BAMS, MD(Ayu))**, the platform helps patients explore treatments, book appointments, and connect via WhatsApp, while clinic staff manage bookings, messages, gallery, and content from one place.
+
+## Highlights
+
+- Responsive, mobile-first public website with smooth animations and clear CTAs
+- English / Marathi language switch for accessibility across the site
+- Online appointment booking with validation, email alerts, Excel export, and optional Google Sheets sync
+- WhatsApp consultation shortcuts and Google Maps clinic location
+- Admin dashboard for appointments, contact messages, treatments, testimonials, gallery, and settings
+- SEO-ready pages (meta tags, Open Graph, JSON-LD) and production-minded security (JWT, bcrypt, rate limits, input sanitization)
 
 ## Stack
 
@@ -14,13 +25,14 @@ Production-oriented website and admin panel for **Shree VishwaPrabha Ayurved And
 
 ```
 clinic/
-├── frontend/                 # Public site + /admin panel
+├── Frontend/                 # Public site + /admin panel
 │   ├── public/               # robots.txt, sitemap.xml, favicon, manifest
 │   ├── src/
 │   │   ├── admin/            # Admin auth, pages, layout
 │   │   ├── components/       # UI sections, SEO, ErrorBoundary, GA
 │   │   ├── pages/            # Public routes
 │   │   ├── services/         # Axios API client
+│   │   ├── i18n/             # EN / Marathi translations
 │   │   └── data/clinic.js    # Clinic constants
 │   └── vercel.json
 ├── backend/                  # REST API (MVC)
@@ -29,15 +41,9 @@ clinic/
 │   ├── middleware/           # auth, rate limit, sanitize, errors
 │   ├── models/
 │   ├── routes/
-│   ├── services/             # email
+│   ├── services/             # email, Excel, Google Sheets
 │   ├── utils/                # seed scripts, tokens, logger
 │   └── render.yaml
-├── docs/
-│   ├── DEPLOYMENT.md
-│   ├── API.md
-│   ├── ENV.md
-│   ├── ADMIN_GUIDE.md
-│   └── PRODUCTION_CHECKLIST.md
 └── README.md
 ```
 
@@ -52,8 +58,7 @@ clinic/
 
 ```bash
 cd backend
-cp .env.example .env
-# Edit MONGODB_URI, JWT_SECRET, ADMIN_*, EMAIL_* as needed
+# Create a local .env (do not commit secrets)
 npm install
 npm run seed:admin
 npm run seed:clinic
@@ -66,9 +71,8 @@ Health: `GET /api/health`
 ### 2. Frontend
 
 ```bash
-cd frontend
-cp .env.example .env
-# Set VITE_API_URL=http://localhost:5001/api
+cd Frontend
+# Create a local .env with VITE_API_URL=http://localhost:5001/api
 npm install
 npm run dev
 ```
@@ -76,10 +80,7 @@ npm run dev
 App: `http://localhost:5173` (or next free port)  
 Admin: `/admin/login`
 
-**Default admin (from `.env`):**
-
-- Email: value of `ADMIN_EMAIL`
-- Password: value of `ADMIN_PASSWORD` (re-sync with `npm run seed:admin`)
+**Admin login** uses the `ADMIN_EMAIL` / `ADMIN_PASSWORD` values from your local backend `.env` (seed with `npm run seed:admin`).
 
 ## Scripts
 
@@ -89,29 +90,23 @@ Admin: `/admin/login`
 | backend | `npm start` | Production API |
 | backend | `npm run seed:admin` | Create/reset admin user |
 | backend | `npm run seed:clinic` | Seed doctor + clinic settings |
-| frontend | `npm run dev` | Vite dev server |
-| frontend | `npm run build` | Production bundle |
-| frontend | `npm run preview` | Preview production build |
+| Frontend | `npm run dev` | Vite dev server |
+| Frontend | `npm run build` | Production bundle |
+| Frontend | `npm run preview` | Preview production build |
 | both | `npm run lint` | ESLint |
 
 ## Features
 
 - Public marketing site (hero, treatments, Panchakarma, gallery, testimonials, FAQ, appointment & contact)
+- Bilingual UI (English / Marathi)
 - WhatsApp floating CTA + post-booking prompt
 - Google Maps embed
 - Email notifications (appointment + contact) when SMTP is configured
+- Appointment sync to Excel / optional Google Sheets webhook
 - Admin panel: dashboard, appointments, messages, gallery, treatments, testimonials, doctor profile, clinic settings
 - SEO: Helmet meta, Open Graph, Twitter cards, JSON-LD (MedicalClinic / LocalBusiness / Physician), robots.txt, sitemap
 - Security: Helmet, CORS, rate limits, mongo-sanitize, XSS scrubbing, JWT + bcrypt
 - Resilience: ErrorBoundary, offline banner, 404 / 500 pages, loading skeletons
-
-## Documentation
-
-- [Deployment Guide](docs/DEPLOYMENT.md)
-- [API Documentation](docs/API.md)
-- [Environment Variables](docs/ENV.md)
-- [Admin Guide](docs/ADMIN_GUIDE.md)
-- [Production Checklist](docs/PRODUCTION_CHECKLIST.md)
 
 ## License
 
