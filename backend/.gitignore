@@ -1,8 +1,9 @@
 # Dependencies
 node_modules/
 
-# Environment secrets
+# Environment secrets (do not commit)
 .env
+.env.*
 .env.local
 .env.*.local
 
