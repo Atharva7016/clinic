@@ -5,11 +5,14 @@ node_modules/
 dist/
 dist-ssr/
 
-# Environment (do not commit)
+# Environment (do not commit secrets)
 .env
-.env.*
 .env.local
 .env.*.local
+
+# Allow committed production public Vite vars
+!.env.example
+!.env.production
 
 # Logs
 *.log
