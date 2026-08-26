@@ -1,0 +1,16 @@
+# Optional Render Blueprint for the static frontend (Static Site or Web Service).
+# If using a Static Site: Build Command = npm install && npm run build, Publish = dist
+services:
+  - type: web
+    name: clinic-frontend
+    runtime: node
+    rootDir: Frontend
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s dist -l $PORT
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: VITE_API_URL
+        value: https://clinic-backend-h8ex.onrender.com/api
+      - key: VITE_SITE_URL
+        value: https://clinic-frontend-bx4b.onrender.com

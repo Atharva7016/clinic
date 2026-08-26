@@ -2,15 +2,22 @@
  * Shared Axios client + reusable HTTP helpers for the clinic API.
  * Base URL: VITE_API_URL (preferred) or legacy VITE_API_BASE_URL.
  *
- * Production: set VITE_API_URL to your live API, e.g.
- *   VITE_API_URL=https://api.yourdomain.com/api
+ * Production builds must target the live Render API — never localhost.
  */
 import axios from 'axios';
 
-const API_URL =
-  import.meta.env.VITE_API_URL ||
-  import.meta.env.VITE_API_BASE_URL ||
-  'http://localhost:5001/api';
+const PRODUCTION_API_URL = 'https://clinic-backend-h8ex.onrender.com/api';
+const DEV_API_URL = 'http://localhost:5001/api';
+
+const fromEnv =
+  import.meta.env.VITE_API_URL || import.meta.env.VITE_API_BASE_URL || '';
+
+/** Ignore localhost env leftovers when shipping a production build */
+const API_URL = import.meta.env.PROD
+  ? fromEnv && !fromEnv.includes('localhost')
+    ? fromEnv
+    : PRODUCTION_API_URL
+  : fromEnv || DEV_API_URL;
 
 const api = axios.create({
   baseURL: API_URL,
