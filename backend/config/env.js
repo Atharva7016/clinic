@@ -10,7 +10,7 @@ const env = {
     return process.env.NODE_ENV || 'development';
   },
   get port() {
-    return Number(process.env.PORT) || 5000;
+    return Number(process.env.PORT) || 5001;
   },
   get mongoUri() {
     return process.env.MONGODB_URI;

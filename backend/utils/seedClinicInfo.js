@@ -40,7 +40,7 @@ const seed = async () => {
     const doctorPayload = {
       name: 'Dr. Gauri Patil',
       qualification: 'BAMS, MD(Ayu)',
-      experienceYears: 13,
+      experienceYears: 5,
       specialization: 'Ayurveda & Panchakarma',
       about:
         'Dedicated Ayurvedic physician (BAMS, MD Ayu) specializing in classical Ayurveda and Panchakarma with personalized patient care at Shree VishwaPrabha Clinic, Thane.',

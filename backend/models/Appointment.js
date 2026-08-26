@@ -1,5 +1,5 @@
 /**
- * Appointment booking model.
+ * Appointment booking model — name + phone required; other fields optional.
  */
 import mongoose from 'mongoose';
 
@@ -24,26 +24,26 @@ const appointmentSchema = new mongoose.Schema(
     },
     age: {
       type: Number,
-      required: [true, 'Age is required'],
       min: [1, 'Age must be at least 1'],
       max: [99, 'Age must be at most 99'],
+      default: undefined,
     },
     gender: {
       type: String,
-      required: [true, 'Gender is required'],
       enum: {
-        values: ['male', 'female', 'other'],
+        values: ['male', 'female', 'other', ''],
         message: 'Gender must be male, female, or other',
       },
+      default: '',
     },
     disease: {
       type: String,
-      required: [true, 'Disease / concern is required'],
       trim: true,
+      default: '',
     },
     preferredDate: {
       type: Date,
-      required: [true, 'Preferred date is required'],
+      default: undefined,
     },
     preferredTime: {
       type: String,

@@ -103,15 +103,15 @@ cp .env.example .env
 
 # Ensure MongoDB is running (local) or Atlas URI is set
 npm run seed:admin   # creates admin from ADMIN_* env vars
-npm run dev          # http://localhost:5000
+npm run dev          # http://localhost:5001
 ```
 
 ### Quick checks
 
 ```bash
-curl http://localhost:5000/api/health
+curl http://localhost:5001/api/health
 
-curl -X POST http://localhost:5000/api/auth/login ^
+curl -X POST http://localhost:5001/api/auth/login ^
   -H "Content-Type: application/json" ^
   -d "{\"email\":\"YOUR_ADMIN_EMAIL\",\"password\":\"YOUR_ADMIN_PASSWORD\"}"
 ```

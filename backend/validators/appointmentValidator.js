@@ -1,5 +1,6 @@
 /**
  * Appointment request validators (express-validator).
+ * Name + phone required; all other fields optional.
  */
 import { body, param } from 'express-validator';
 
@@ -27,23 +28,33 @@ export const createAppointmentRules = [
     .withMessage('Enter a valid email')
     .normalizeEmail(),
   body('age')
-    .notEmpty()
-    .withMessage('Age is required')
+    .optional({ checkFalsy: true })
     .isInt({ min: 1, max: 99 })
     .withMessage('Age must be between 1 and 99')
     .toInt(),
   body('gender')
+    .optional({ checkFalsy: true })
     .trim()
-    .notEmpty()
-    .withMessage('Gender is required')
     .isIn(['male', 'female', 'other'])
     .withMessage('Gender must be male, female, or other'),
-  body('disease').trim().notEmpty().withMessage('Disease / concern is required'),
+  body('disease').optional({ checkFalsy: true }).trim().isString(),
   body('preferredDate')
-    .notEmpty()
-    .withMessage('Preferred date is required')
+    .optional({ checkFalsy: true })
     .isISO8601()
     .withMessage('Preferred date must be a valid date')
+    .custom((value) => {
+      const selected = new Date(value);
+      if (Number.isNaN(selected.getTime())) {
+        throw new Error('Preferred date must be a valid date');
+      }
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      selected.setHours(0, 0, 0, 0);
+      if (selected < today) {
+        throw new Error('Preferred date cannot be in the past');
+      }
+      return true;
+    })
     .toDate(),
   body('preferredTime').optional({ checkFalsy: true }).trim().isString(),
   body('notes').optional({ checkFalsy: true }).trim().isString(),
@@ -68,18 +79,18 @@ export const updateAppointmentRules = [
     .withMessage('Enter a valid email')
     .normalizeEmail(),
   body('age')
-    .optional()
+    .optional({ checkFalsy: true })
     .isInt({ min: 1, max: 99 })
     .withMessage('Age must be between 1 and 99')
     .toInt(),
   body('gender')
-    .optional()
+    .optional({ checkFalsy: true })
     .trim()
     .isIn(['male', 'female', 'other'])
     .withMessage('Gender must be male, female, or other'),
-  body('disease').optional().trim().notEmpty(),
+  body('disease').optional({ checkFalsy: true }).trim().isString(),
   body('preferredDate')
-    .optional()
+    .optional({ checkFalsy: true })
     .isISO8601()
     .withMessage('Preferred date must be a valid date')
     .toDate(),

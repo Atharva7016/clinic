@@ -1,5 +1,5 @@
 /**
- * Contact form message model.
+ * Contact form message model — name, phone, message required; email & subject optional.
  */
 import mongoose from 'mongoose';
 
@@ -18,15 +18,15 @@ const contactSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, 'Email is required'],
       trim: true,
       lowercase: true,
+      default: '',
     },
     subject: {
       type: String,
-      required: [true, 'Subject is required'],
       trim: true,
       maxlength: 200,
+      default: '',
     },
     message: {
       type: String,

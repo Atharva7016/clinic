@@ -1,5 +1,5 @@
 /**
- * Contact form validators.
+ * Contact form validators — name, phone, message required; email & subject optional.
  */
 import { body, param } from 'express-validator';
 
@@ -12,17 +12,12 @@ export const createContactRules = [
     .matches(/^[0-9]{10}$/)
     .withMessage('Phone must be exactly 10 digits'),
   body('email')
+    .optional({ values: 'falsy' })
     .trim()
-    .notEmpty()
-    .withMessage('Email is required')
     .isEmail()
     .withMessage('Enter a valid email')
     .normalizeEmail(),
-  body('subject')
-    .trim()
-    .notEmpty()
-    .withMessage('Subject is required')
-    .isLength({ max: 200 }),
+  body('subject').optional({ values: 'falsy' }).trim().isLength({ max: 200 }),
   body('message')
     .trim()
     .notEmpty()

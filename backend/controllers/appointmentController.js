@@ -25,18 +25,29 @@ import logger from '../utils/logger.js';
  */
 export const createAppointment = asyncHandler(async (req, res) => {
   // Allowlist fields — never trust client-provided status
-  const appointment = await Appointment.create({
+  const payload = {
     patientName: req.body.patientName,
     phone: req.body.phone,
-    email: req.body.email,
-    age: req.body.age,
-    gender: req.body.gender,
-    disease: req.body.disease,
-    preferredDate: req.body.preferredDate,
-    preferredTime: req.body.preferredTime,
-    notes: req.body.notes,
+    email: req.body.email || '',
+    preferredTime: req.body.preferredTime || '',
+    notes: req.body.notes || '',
     status: 'pending',
-  });
+  };
+
+  if (req.body.age != null && req.body.age !== '') {
+    payload.age = req.body.age;
+  }
+  if (req.body.gender) {
+    payload.gender = req.body.gender;
+  }
+  if (req.body.disease) {
+    payload.disease = req.body.disease;
+  }
+  if (req.body.preferredDate) {
+    payload.preferredDate = req.body.preferredDate;
+  }
+
+  const appointment = await Appointment.create(payload);
 
   // Fire-and-report email notifications (do not fail the booking on SMTP issues)
   let emailResults = null;
