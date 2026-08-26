@@ -18,6 +18,17 @@ export default defineConfig({
   server: {
     port: 5173,
     open: true,
+    proxy: {
+      // Optional: use relative /api in future; keeps local CORS simple
+      '/api': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+      },
+      '/uploads': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     target: 'es2020',

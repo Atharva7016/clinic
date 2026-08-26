@@ -1,12 +1,12 @@
 /**
- * About Doctor — photo, qualifications, mission/vision, professional timeline.
+ * About Doctor — qualifications, mission/vision, professional timeline.
  */
 import { motion } from 'framer-motion';
-import { FaAward, FaHeartbeat, FaEye, FaBullseye } from 'react-icons/fa';
+import { FaHeartbeat, FaEye, FaBullseye } from 'react-icons/fa';
 import SectionHeading from '../SectionHeading';
-import { CLINIC, IMAGES } from '../../data/clinic';
+import { CLINIC } from '../../data/clinic';
 import { useLanguage } from '../../context/LanguageContext';
-import { fadeLeft, fadeRight, fadeUp, staggerContainer, viewportOnce } from '../../utils/motion';
+import { fadeUp, staggerContainer, viewportOnce } from '../../utils/motion';
 
 function AboutDoctor({ compact = false }) {
   const { t, content } = useLanguage();
@@ -22,66 +22,42 @@ function AboutDoctor({ compact = false }) {
           subtitle={`${CLINIC.doctor.qualification} · ${CLINIC.doctor.specialty}`}
         />
 
-        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-          <motion.div
-            className="relative"
-            variants={fadeLeft}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-          >
-            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-secondary to-accent/30 blur-sm" />
-            <img
-              src={IMAGES.doctor}
-              alt={`${CLINIC.doctor.name} portrait`}
-              className="relative aspect-[4/5] w-full rounded-[1.75rem] object-cover shadow-lift"
-            />
-            <div className="absolute -bottom-5 left-6 right-6 rounded-2xl bg-primary p-4 text-white shadow-soft sm:left-10 sm:right-auto sm:max-w-xs">
-              <p className="flex items-center gap-2 text-sm font-semibold">
-                <FaAward className="text-accent" aria-hidden="true" />
-                {t('aboutDoctor.yearsExp', { years: CLINIC.doctor.experienceYears })}
-              </p>
-              <p className="mt-1 text-xs text-secondary">{t('aboutDoctor.trusted')}</p>
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="mx-auto max-w-3xl space-y-6"
+        >
+          <motion.p variants={fadeUp} className="text-ink-muted leading-relaxed">
+            {t('aboutDoctor.bio', { doctor: CLINIC.doctor.name })}
+          </motion.p>
+
+          <motion.ul variants={fadeUp} className="grid gap-3 sm:grid-cols-2">
+            {skillList.map((item) => (
+              <li
+                key={item}
+                className="flex items-start gap-2 rounded-xl bg-white p-3 text-sm font-medium text-ink shadow-soft"
+              >
+                <FaHeartbeat className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
+                {item}
+              </li>
+            ))}
+          </motion.ul>
+
+          <motion.div variants={fadeUp} className="grid gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-secondary bg-white p-5">
+              <FaBullseye className="mb-2 text-accent" aria-hidden="true" />
+              <h3 className="font-semibold text-ink">{t('aboutDoctor.mission')}</h3>
+              <p className="mt-2 text-sm text-ink-muted">{t('aboutDoctor.missionBody')}</p>
+            </div>
+            <div className="rounded-2xl border border-secondary bg-white p-5">
+              <FaEye className="mb-2 text-accent" aria-hidden="true" />
+              <h3 className="font-semibold text-ink">{t('aboutDoctor.vision')}</h3>
+              <p className="mt-2 text-sm text-ink-muted">{t('aboutDoctor.visionBody')}</p>
             </div>
           </motion.div>
-
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
-            className="space-y-6"
-          >
-            <motion.p variants={fadeRight} className="text-ink-muted leading-relaxed">
-              {t('aboutDoctor.bio', { doctor: CLINIC.doctor.name })}
-            </motion.p>
-
-            <motion.ul variants={fadeRight} className="grid gap-3 sm:grid-cols-2">
-              {skillList.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-start gap-2 rounded-xl bg-white p-3 text-sm font-medium text-ink shadow-soft"
-                >
-                  <FaHeartbeat className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-                  {item}
-                </li>
-              ))}
-            </motion.ul>
-
-            <motion.div variants={fadeRight} className="grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-secondary bg-white p-5">
-                <FaBullseye className="mb-2 text-accent" aria-hidden="true" />
-                <h3 className="font-semibold text-ink">{t('aboutDoctor.mission')}</h3>
-                <p className="mt-2 text-sm text-ink-muted">{t('aboutDoctor.missionBody')}</p>
-              </div>
-              <div className="rounded-2xl border border-secondary bg-white p-5">
-                <FaEye className="mb-2 text-accent" aria-hidden="true" />
-                <h3 className="font-semibold text-ink">{t('aboutDoctor.vision')}</h3>
-                <p className="mt-2 text-sm text-ink-muted">{t('aboutDoctor.visionBody')}</p>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
+        </motion.div>
 
         {!compact && (
           <motion.div

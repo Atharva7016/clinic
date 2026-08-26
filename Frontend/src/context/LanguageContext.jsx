@@ -11,6 +11,7 @@ import {
   FAQS_MR,
   TIMELINE_MR,
   GALLERY_MR,
+  TESTIMONIALS_MR,
   DISEASE_LABELS_MR,
 } from '../i18n/contentMr';
 import {
@@ -46,6 +47,19 @@ function mergeById(list, overlay, idKey = 'id') {
     const key = item[idKey];
     const patch = overlay[key] ?? overlay[String(key)];
     return patch ? { ...item, ...patch } : item;
+  });
+}
+
+/** Localize testimonials by id or English patient name */
+function localizeTestimonials(list, overlay) {
+  if (!overlay || !list?.length) return list;
+  return list.map((item) => {
+    const patch =
+      overlay[item.id] ??
+      overlay[String(item.id)] ??
+      overlay[item.name] ??
+      overlay[item.patientName];
+    return patch ? { ...item, name: patch.name || item.name, review: patch.review || item.review } : item;
   });
 }
 
@@ -105,6 +119,7 @@ export function LanguageProvider({ children }) {
         gallery: GALLERY,
         testimonials: TESTIMONIALS,
         diseaseLabel: (title) => title,
+        localizeTestimonials: (list) => list,
       };
     }
 
@@ -124,8 +139,9 @@ export function LanguageProvider({ children }) {
         return patch ? { ...item, ...patch } : item;
       }),
       gallery: mergeById(GALLERY, GALLERY_MR),
-      testimonials: TESTIMONIALS,
+      testimonials: localizeTestimonials(TESTIMONIALS, TESTIMONIALS_MR),
       diseaseLabel: (title) => DISEASE_LABELS_MR[title] || title,
+      localizeTestimonials: (list) => localizeTestimonials(list, TESTIMONIALS_MR),
     };
   }, [lang, dict]);
 

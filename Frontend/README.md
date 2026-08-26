@@ -66,17 +66,24 @@ Frontend talks to Express via `src/services/api.js` using `VITE_API_URL`.
 
 ### Local
 
+Copy env and start both servers:
+
 ```bash
+cd Frontend
+cp .env.example .env   # sets VITE_API_URL=http://localhost:5001/api
+
 # terminal 1
 cd backend && npm run dev
 
 # terminal 2
-cd frontend && npm run dev
+cd Frontend && npm run dev
 ```
+
+If the console shows `sw.js` / `FetchEvent` errors, hard-refresh once after load — the app unregisters leftover service workers on boot.
 
 ### Production API URL
 
-In `frontend/.env` (rebuild after changing):
+In `Frontend/.env` (rebuild after changing):
 
 ```
 VITE_API_URL=https://api.yourdomain.com/api

@@ -26,7 +26,7 @@ function ContactCTA() {
             </span>
             <div>
               <h2 className="text-xl font-bold text-ink">{t('contactCta.title')}</h2>
-              <p className="mt-1 max-w-xl text-sm text-ink-muted">{CLINIC.contact.address}</p>
+              <p className="mt-1 max-w-xl text-sm text-ink-muted">{t('clinic.address')}</p>
             </div>
           </div>
           <a

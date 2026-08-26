@@ -122,7 +122,7 @@ function Footer() {
             <ul className="mb-6 space-y-3 text-sm">
               <li className="flex gap-3">
                 <FaMapMarkerAlt className="mt-1 shrink-0 text-accent" aria-hidden="true" />
-                <span>{CLINIC.contact.address}</span>
+                <span>{t('clinic.address')}</span>
               </li>
               <li className="flex gap-3">
                 <FaClock className="mt-1 shrink-0 text-accent" aria-hidden="true" />
@@ -142,7 +142,7 @@ function Footer() {
                   className="flex min-h-11 items-center gap-3 transition hover:text-accent"
                 >
                   <FaPhoneAlt className="text-accent" aria-hidden="true" />
-                  {CLINIC.contact.phone}
+                  {t('clinic.phone')}
                 </a>
               </li>
               <li>

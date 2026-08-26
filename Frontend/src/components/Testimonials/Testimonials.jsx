@@ -17,7 +17,8 @@ import '../../styles/components.css';
 function Testimonials({ showHeading = true, showCta = true }) {
   const { t, content } = useLanguage();
   const { testimonials, loading, error, refetch } = useTestimonials();
-  const list = testimonials.length > 0 ? testimonials : error ? [] : content.testimonials;
+  const raw = testimonials.length > 0 ? testimonials : error ? [] : content.testimonials;
+  const list = content.localizeTestimonials(raw);
   const [index, setIndex] = useState(0);
   const total = list.length;
   const current = list[index] || null;

@@ -142,7 +142,7 @@ export const PANCHAKARMA = [
 ];
 
 export const STATISTICS = [
-  { id: 'exp', value: 13, suffix: '+', label: 'Years Experience' },
+  { id: 'exp', value: 5, suffix: '+', label: 'Years Experience' },
   { id: 'patients', value: 7500, suffix: '+', label: 'Happy Patients' },
   { id: 'consults', value: 10000, suffix: '+', label: 'Consultations' },
   { id: 'reviews', value: 46, suffix: '+', label: 'Five Star Reviews' },
@@ -152,7 +152,7 @@ export const WHY_CHOOSE = [
   {
     id: 1,
     title: 'Experienced Doctor',
-    description: '13+ years of authentic Ayurvedic clinical practice.',
+    description: '5+ years of authentic Ayurvedic clinical practice.',
   },
   {
     id: 2,
@@ -265,7 +265,7 @@ export const FAQS = [
     id: 2,
     question: 'Who is the consulting doctor?',
     answer:
-      'Dr. Gauri Patil, BAMS (Ayurvedacharya), leads the clinic with 13+ years of experience in Ayurveda and Panchakarma.',
+      'Dr. Gauri Patil, BAMS (Ayurvedacharya), leads the clinic with 5+ years of experience in Ayurveda and Panchakarma.',
   },
   {
     id: 3,

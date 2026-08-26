@@ -11,7 +11,7 @@ export const CLINIC = {
   doctor: {
     name: 'Dr. Gauri Patil',
     qualification: 'BAMS, MD(Ayu)',
-    experienceYears: 13,
+    experienceYears: 5,
     specialty: 'Ayurveda & Panchakarma',
   },
   contact: {

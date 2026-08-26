@@ -83,23 +83,27 @@ function Contact() {
 
   const cards = [
     {
+      id: 'address',
       icon: FaMapMarkerAlt,
       title: t('contact.address'),
-      body: CLINIC.contact.address,
+      body: t('clinic.address'),
     },
     {
+      id: 'phone',
       icon: FaPhoneAlt,
       title: t('contact.phone'),
-      body: CLINIC.contact.phone,
+      body: t('clinic.phone'),
       href: CLINIC.contact.phoneHref,
     },
     {
+      id: 'email',
       icon: FaEnvelope,
       title: t('contact.email'),
       body: CLINIC.contact.email,
       href: CLINIC.contact.emailHref,
     },
     {
+      id: 'hours',
       icon: FaClock,
       title: t('contact.hours'),
       body: `${t('hours.weekdays')}\n${t('hours.morning')}\n${t('hours.evening')}\n${t('hours.sunday')}`,
@@ -131,9 +135,9 @@ function Contact() {
             whileInView="visible"
             viewport={viewportOnce}
           >
-            {cards.map(({ icon: Icon, title, body, href }) => (
+            {cards.map(({ id, icon: Icon, title, body, href }) => (
               <motion.div
-                key={title}
+                key={id}
                 variants={fadeUp}
                 className="rounded-2xl border border-secondary bg-white p-5 shadow-soft"
               >
@@ -183,8 +187,16 @@ function Contact() {
                   className={fieldClass}
                   {...register('name', {
                     required: t('contact.errors.nameRequired'),
+                    pattern: {
+                      value: /^[A-Za-z\u0900-\u097F]+(?: [A-Za-z\u0900-\u097F]+)*$/,
+                      message: t('contact.errors.nameInvalid'),
+                    },
                     onChange: (e) => {
-                      e.target.value = e.target.value.replace(
+                      // Letters + spaces only (no digits); Title Case for Latin letters
+                      let value = e.target.value.replace(/[0-9\u0966-\u096F]/g, '');
+                      value = value.replace(/[^A-Za-z\u0900-\u097F\s]/g, '');
+                      value = value.replace(/\s+/g, ' ');
+                      e.target.value = value.replace(
                         /(^|\s)([a-zA-Z])/g,
                         (_, sep, letter) => sep + letter.toUpperCase()
                       );
@@ -229,30 +241,8 @@ function Contact() {
                   autoComplete="email"
                   placeholder="name@example.com"
                   className={fieldClass}
-                  {...register('email', {
-                    required: t('contact.errors.emailRequired'),
-                    pattern: {
-                      value:
-                        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                      message: t('contact.errors.emailInvalid'),
-                    },
-                    validate: (value) => {
-                      const email = value.trim();
-                      if (email.includes(' ')) {
-                        return t('contact.errors.emailInvalid');
-                      }
-                      if (!email.includes('@') || !email.includes('.')) {
-                        return t('contact.errors.emailInvalid');
-                      }
-                      const [local, domain] = email.split('@');
-                      if (!local || !domain || domain.indexOf('.') === -1) {
-                        return t('contact.errors.emailInvalid');
-                      }
-                      return true;
-                    },
-                  })}
+                  {...register('email')}
                 />
-                {errors.email && <p className={errorClass}>{errors.email.message}</p>}
               </div>
               <div>
                 <label
@@ -265,7 +255,6 @@ function Contact() {
                   id="contact-subject"
                   className={fieldClass}
                   {...register('subject', {
-                    required: t('contact.errors.subjectRequired'),
                     onChange: (e) => {
                       e.target.value = e.target.value.replace(
                         /(^|\s)([a-zA-Z])/g,
@@ -274,7 +263,6 @@ function Contact() {
                     },
                   })}
                 />
-                {errors.subject && <p className={errorClass}>{errors.subject.message}</p>}
               </div>
               <div className="sm:col-span-2">
                 <label
@@ -289,7 +277,10 @@ function Contact() {
                   className={fieldClass}
                   {...register('message', {
                     required: t('contact.errors.messageRequired'),
-                    maxLength: { value: 2000, message: t('contact.errors.messageRequired') },
+                    maxLength: {
+                      value: 2000,
+                      message: t('contact.errors.messageRequired'),
+                    },
                   })}
                 />
                 {errors.message && <p className={errorClass}>{errors.message.message}</p>}

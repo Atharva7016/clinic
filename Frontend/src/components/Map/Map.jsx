@@ -8,20 +8,22 @@ import { getDirectionsUrl, getGoogleMapEmbedUrl } from '../../utils/integrations
 
 function Map({
   embedUrl,
-  address = CLINIC.contact.address,
+  address,
   lat,
   lng,
   showDetails = true,
   className = '',
 }) {
   const { t } = useLanguage();
+  const displayAddress = address || t('clinic.address');
   let src = embedUrl || getGoogleMapEmbedUrl();
 
   if (!embedUrl && lat != null && lng != null) {
     src = `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
   }
 
-  const directions = getDirectionsUrl(address);
+  // Use English address for Google Maps / directions so location resolves correctly
+  const directions = getDirectionsUrl(CLINIC.contact.address);
 
   return (
     <div className={`grid gap-6 lg:grid-cols-5 ${className}`}>
@@ -29,7 +31,7 @@ function Map({
         <div className="aspect-[4/3] w-full sm:aspect-[16/10]">
           {src ? (
             <iframe
-              title={`Map — ${address}`}
+              title={`Map — ${displayAddress}`}
               src={src}
               className="h-full w-full border-0"
               loading="lazy"
@@ -52,7 +54,7 @@ function Map({
               <FaMapMarkerAlt className="mt-1 shrink-0 text-primary" aria-hidden="true" />
               <div>
                 <p className="text-sm font-semibold text-ink">{t('map.address')}</p>
-                <p className="text-sm text-ink-muted">{address}</p>
+                <p className="text-sm text-ink-muted">{displayAddress}</p>
               </div>
             </div>
             <div className="flex gap-3">
@@ -70,7 +72,7 @@ function Map({
               className="flex items-center gap-3 text-sm text-ink-muted transition hover:text-primary"
             >
               <FaPhoneAlt className="text-primary" aria-hidden="true" />
-              {CLINIC.contact.phone}
+              {t('clinic.phone')}
             </a>
             <a
               href={CLINIC.contact.emailHref}

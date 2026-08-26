@@ -18,7 +18,8 @@ import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
 function TestimonialsPage() {
   const { t, content } = useLanguage();
   const { testimonials, loading, error, refetch } = useTestimonials();
-  const list = testimonials.length > 0 ? testimonials : error ? [] : content.testimonials;
+  const raw = testimonials.length > 0 ? testimonials : error ? [] : content.testimonials;
+  const list = content.localizeTestimonials(raw);
 
   return (
     <>
