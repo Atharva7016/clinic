@@ -1,11 +1,10 @@
 /**
- * Sticky white navbar — mobile: logo, names, WhatsApp, EN/मराठी; desktop adds links + Book.
+ * Sticky white navbar — mobile: logo, names, EN/मराठी; desktop adds links + Book.
  */
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { FaWhatsapp } from 'react-icons/fa';
 import { CLINIC, NAV_LINKS } from '../../data/clinic';
 import { useLanguage } from '../../context/LanguageContext';
 import { cn } from '../../utils/helpers';
@@ -147,15 +146,6 @@ function Navbar() {
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <LangToggle compact className="inline-flex" />
-          <a
-            href={CLINIC.contact.whatsappHref}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#25D366] text-white transition hover:brightness-110 sm:h-11 sm:w-11"
-            aria-label={t('common.whatsapp')}
-          >
-            <FaWhatsapp className="h-4 w-4 shrink-0 sm:h-5 sm:w-5" aria-hidden="true" />
-          </a>
           <Link
             to="/appointment"
             className="hidden min-h-11 items-center rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark lg:inline-flex"
