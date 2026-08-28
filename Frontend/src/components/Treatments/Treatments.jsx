@@ -9,7 +9,7 @@ import EmptyState from '../EmptyState';
 import ErrorState from '../ErrorState';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTreatments } from '../../hooks/useTreatments';
-import { fadeUp, staggerContainer, viewportOnce } from '../../utils/motion';
+import { fadeUp, staggerContainer } from '../../utils/motion';
 
 function Treatments({ limit, showHeading = true }) {
   const { t, content, isMr } = useLanguage();
@@ -58,8 +58,7 @@ function Treatments({ limit, showHeading = true }) {
               className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6"
               variants={staggerContainer}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
+              animate="visible"
             >
               {items.map((item) => (
                 <motion.article
