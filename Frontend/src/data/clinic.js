@@ -2,6 +2,7 @@
  * Clinic-wide constants — Shree VishwaPrabha Ayurved And Panchakarma Clinic
  */
 import logoImg from '../assets/images/logo.png';
+import doctorImg from '../assets/images/doctor.png';
 
 export const CLINIC = {
   name: 'Shree VishwaPrabha Ayurved And Panchakarma Clinic',
@@ -10,8 +11,8 @@ export const CLINIC = {
   logo: logoImg,
   doctor: {
     name: 'Dr. Gauri Patil',
-    qualification: 'BAMS, MD(Ayu)',
-    experienceYears: 5,
+    qualification: 'BAMS, MD(Ayurvedacharya)',
+    experienceYears: 7,
     specialty: 'Ayurveda & Panchakarma',
   },
   contact: {
@@ -49,7 +50,6 @@ export const NAV_LINKS = [
   { labelKey: 'nav.about', path: '/about' },
   { labelKey: 'nav.treatments', path: '/treatments' },
   { labelKey: 'nav.panchakarma', path: '/panchakarma' },
-  { labelKey: 'nav.gallery', path: '/gallery' },
   { labelKey: 'nav.testimonials', path: '/testimonials' },
   { labelKey: 'nav.contact', path: '/contact' },
 ];
@@ -57,8 +57,7 @@ export const NAV_LINKS = [
 /** High-quality Unsplash placeholders (ayurveda / wellness / clinic) */
 export const IMAGES = {
   hero: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=1600&q=80',
-  doctor:
-    'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=80',
+  doctor: doctorImg,
   clinic:
     'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1200&q=80',
   herbs:

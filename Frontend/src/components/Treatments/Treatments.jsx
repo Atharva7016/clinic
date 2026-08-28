@@ -3,7 +3,6 @@
  */
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaArrowRight } from 'react-icons/fa';
 import SectionHeading from '../SectionHeading';
 import Skeleton from '../Skeleton';
 import EmptyState from '../EmptyState';
@@ -81,13 +80,6 @@ function Treatments({ limit, showHeading = true }) {
                   <div className="p-5">
                     <h3 className="text-lg font-semibold text-ink">{displayTitle(item)}</h3>
                     <p className="mt-2 text-sm text-ink-muted">{item.description}</p>
-                    <Link
-                      to="/treatments"
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary transition group-hover:gap-3"
-                    >
-                      {t('treatments.readMore')}{' '}
-                      <FaArrowRight className="text-xs" aria-hidden="true" />
-                    </Link>
                   </div>
                 </motion.article>
               ))}

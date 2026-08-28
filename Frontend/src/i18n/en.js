@@ -41,7 +41,7 @@ const en = {
     book: 'Book Appointment',
     whatsapp: 'WhatsApp Consultation',
     call: 'Call Now',
-    years: '5+ Years',
+    years: '7+ Years',
     clinical: 'Clinical Excellence',
     detox: 'Authentic Detox Care',
     imageAlt: 'Calm Ayurvedic wellness atmosphere',
@@ -52,7 +52,7 @@ const en = {
     trusted: 'Trusted Ayurvedic Physician',
     bio: '{doctor} is a dedicated Ayurvedacharya specializing in classical Ayurveda and Panchakarma. Her approach blends precise diagnosis, herbal medicine, and lifestyle counseling for lasting wellness—not temporary relief.',
     skills: [
-      'BAMS (Ayurvedacharya)',
+      'BAMS, MD(Ayurvedacharya)',
       'Chronic disease management',
       "Women's health & PCOD care",
       'Classical Panchakarma protocols',

@@ -32,11 +32,6 @@ export const getAdminMessages = () => adminGet('/messages');
 export const getAdminMessage = (id) => adminGet(`/messages/${id}`);
 export const deleteAdminMessage = (id) => adminDel(`/messages/${id}`);
 
-export const getAdminGallery = () => adminGet('/gallery');
-export const createAdminGallery = (formData) =>
-  adminPost('/gallery', formData);
-export const deleteAdminGallery = (id) => adminDel(`/gallery/${id}`);
-
 export const getAdminTreatments = () => adminGet('/treatments');
 export const createAdminTreatment = (formData) =>
   adminPost('/treatments', formData);

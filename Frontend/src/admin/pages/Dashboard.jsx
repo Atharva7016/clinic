@@ -8,7 +8,6 @@ import {
   FaHourglassHalf,
   FaCheckCircle,
   FaEnvelopeOpenText,
-  FaImages,
   FaLeaf,
 } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -39,7 +38,7 @@ function Dashboard() {
     return (
       <div>
         <PageHeader title="Dashboard" subtitle="Clinic overview" />
-        <Skeleton count={6} />
+        <Skeleton count={5} />
       </div>
     );
   }
@@ -85,12 +84,6 @@ function Dashboard() {
           value={cards.unreadMessages ?? 0}
           icon={FaEnvelopeOpenText}
           to="/admin/messages?filter=unread"
-        />
-        <StatCard
-          label="Gallery Images"
-          value={cards.totalGallery ?? 0}
-          icon={FaImages}
-          to="/admin/gallery"
         />
         <StatCard
           label="Treatments"

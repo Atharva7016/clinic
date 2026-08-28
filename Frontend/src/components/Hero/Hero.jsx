@@ -101,13 +101,13 @@ function Hero() {
           </div>
 
           <motion.div
-            className="glass-card absolute -left-2 top-8 hidden max-w-[160px] p-3 text-left text-white sm:-left-3 sm:top-10 sm:block sm:max-w-[180px] sm:p-4"
+            className="glass-card absolute -left-2 top-8 hidden max-w-[160px] p-3 text-left sm:-left-3 sm:top-10 sm:block sm:max-w-[180px] sm:p-4"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           >
             <FaUserMd className="mb-2 text-accent" aria-hidden="true" />
-            <p className="text-xs font-semibold">{t('hero.years')}</p>
-            <p className="text-[11px] text-secondary">{t('hero.clinical')}</p>
+            <p className="text-xs font-semibold text-black">{t('hero.years')}</p>
+            <p className="text-[11px] text-black">{t('hero.clinical')}</p>
           </motion.div>
 
           <motion.div

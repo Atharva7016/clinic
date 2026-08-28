@@ -8,7 +8,6 @@ import AboutDoctor from '../components/AboutDoctor';
 import WhyChooseUs from '../components/WhyChooseUs';
 import Treatments from '../components/Treatments';
 import Panchakarma from '../components/Panchakarma';
-import Gallery from '../components/Gallery';
 import Testimonials from '../components/Testimonials';
 import FAQ from '../components/FAQ';
 import AppointmentCTA from '../components/AppointmentCTA';
@@ -32,7 +31,6 @@ function Home() {
       <Treatments limit={6} />
       <Panchakarma limit={4} />
       <Testimonials />
-      <Gallery limit={6} />
       <FAQ />
       <AppointmentCTA />
       <ContactCTA />

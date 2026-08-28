@@ -1,4 +1,23 @@
 import { IMAGES } from './clinic';
+import migraineImg from '../assets/images/treatments/migraine.png';
+import jointPainImg from '../assets/images/treatments/joint-pain.png';
+import backPainImg from '../assets/images/treatments/back-pain.png';
+import sciaticaImg from '../assets/images/treatments/sciatica.png';
+import pcodImg from '../assets/images/treatments/pcod.png';
+import obesityImg from '../assets/images/treatments/obesity.png';
+import hairLossImg from '../assets/images/treatments/hair-loss.jpg';
+import thyroidImg from '../assets/images/treatments/thyroid.png';
+import hypertensionImg from '../assets/images/treatments/hypertension.png';
+import diabetesImg from '../assets/images/treatments/diabetes.png';
+import stressImg from '../assets/images/treatments/stress.png';
+import skinDiseasesImg from '../assets/images/treatments/skin-diseases.png';
+import abhyangaImg from '../assets/images/panchakarma/abhyanga.png';
+import shirodharaImg from '../assets/images/panchakarma/shirodhara.png';
+import nasyaImg from '../assets/images/panchakarma/nasya.png';
+import bastiImg from '../assets/images/panchakarma/basti.png';
+import vamanaImg from '../assets/images/panchakarma/vamana.png';
+import virechanaImg from '../assets/images/panchakarma/virechana.png';
+import raktamokshanaImg from '../assets/images/panchakarma/raktamokshana.png';
 
 /** Treatment catalogue for cards & treatments page */
 export const TREATMENTS = [
@@ -7,84 +26,84 @@ export const TREATMENTS = [
     title: 'Migraine',
     description:
       'Holistic therapies to ease chronic headaches and restore nervous system balance.',
-    image: IMAGES.herbs,
+    image: migraineImg,
   },
   {
     id: 'joint-pain',
     title: 'Joint Pain',
     description:
       'Herbal oils, fomentation, and therapies that reduce stiffness and improve mobility.',
-    image: IMAGES.oils,
+    image: jointPainImg,
   },
   {
     id: 'back-pain',
     title: 'Back Pain',
     description:
       'Targeted Abhyanga and Kati Basti protocols for lasting spinal comfort.',
-    image: IMAGES.massage,
+    image: backPainImg,
   },
   {
     id: 'sciatica',
     title: 'Sciatica',
     description:
       'Nerve-calming treatments that relieve radiating leg pain and inflammation.',
-    image: IMAGES.treatmentRoom,
+    image: sciaticaImg,
   },
   {
     id: 'pcod',
     title: 'PCOD',
     description:
       'Hormonal balance through customized Ayurvedic medicines and lifestyle guidance.',
-    image: IMAGES.herbs,
+    image: pcodImg,
   },
   {
     id: 'thyroid',
     title: 'Thyroid',
     description:
       'Metabolic support with classical formulations and dietary corrections.',
-    image: IMAGES.oils,
+    image: thyroidImg,
   },
   {
     id: 'diabetes',
     title: 'Diabetes',
     description:
       'Blood sugar management with pathya-apathya counseling and herbal support.',
-    image: IMAGES.clinic,
+    image: diabetesImg,
   },
   {
     id: 'obesity',
     title: 'Obesity',
     description:
       'Sustainable weight balance via detox, diet, and metabolic rejuvenation.',
-    image: IMAGES.yoga,
+    image: obesityImg,
   },
   {
     id: 'hair-loss',
     title: 'Hair Loss',
     description:
       'Scalp therapies and rasayana protocols that strengthen hair from the root.',
-    image: IMAGES.oils,
+    image: hairLossImg,
   },
   {
     id: 'skin-diseases',
     title: 'Skin Diseases',
     description:
       'Gentle detox and herbal care for eczema, psoriasis, and chronic skin issues.',
-    image: IMAGES.herbs,
+    image: skinDiseasesImg,
   },
   {
     id: 'stress',
     title: 'Stress',
     description:
       'Shirodhara and mind-calming therapies for anxiety, burnout, and insomnia.',
-    image: IMAGES.massage,
+    image: stressImg,
   },
   {
-    id: 'asthma',
-    title: 'Asthma',
+    id: 'hypertension',
+    title: 'Hypertension',
     description:
-      'Respiratory strengthening with herbal steam, medicines, and breathing care.',
-    image: IMAGES.treatmentRoom,
+      'Natural Ayurvedic care focused on supporting healthy blood pressure, stress balance, diet, and overall cardiovascular wellness.',
+    image: hypertensionImg,
   },
 ];
 
@@ -95,56 +114,56 @@ export const PANCHAKARMA = [
     title: 'Abhyanga',
     description:
       'Full-body warm oil massage that nourishes tissues and improves circulation.',
-    image: IMAGES.massage,
+    image: abhyangaImg,
   },
   {
     id: 'shirodhara',
     title: 'Shirodhara',
     description:
       'Continuous stream of warm oil on the forehead to calm the mind and nerves.',
-    image: IMAGES.oils,
+    image: shirodharaImg,
   },
   {
     id: 'nasya',
     title: 'Nasya',
     description:
       'Nasal administration of medicated oils for sinus, migraine, and head disorders.',
-    image: IMAGES.herbs,
+    image: nasyaImg,
   },
   {
     id: 'basti',
     title: 'Basti',
     description:
       'Medicated enema therapy considered the queen of Panchakarma for Vata disorders.',
-    image: IMAGES.treatmentRoom,
+    image: bastiImg,
   },
   {
     id: 'vamana',
     title: 'Vamana',
     description:
       'Therapeutic emesis to clear excess Kapha from the respiratory and digestive tracts.',
-    image: IMAGES.clinic,
+    image: vamanaImg,
   },
   {
     id: 'virechana',
     title: 'Virechana',
     description:
       'Controlled purgation that detoxifies the liver and clears Pitta accumulation.',
-    image: IMAGES.herbs,
+    image: virechanaImg,
   },
   {
     id: 'raktamokshana',
     title: 'Raktamokshana',
     description:
       'Blood purification therapy for chronic skin and inflammatory conditions.',
-    image: IMAGES.oils,
+    image: raktamokshanaImg,
   },
 ];
 
 export const STATISTICS = [
-  { id: 'exp', value: 5, suffix: '+', label: 'Years Experience' },
-  { id: 'patients', value: 7500, suffix: '+', label: 'Happy Patients' },
-  { id: 'consults', value: 10000, suffix: '+', label: 'Consultations' },
+  { id: 'exp', value: 7, suffix: '+', label: 'Years Experience' },
+  { id: 'patients', value: 1100, suffix: '+', label: 'Happy Patients' },
+  { id: 'consults', value: 1200, suffix: '+', label: 'Consultations' },
   { id: 'reviews', value: 46, suffix: '+', label: 'Five Star Reviews' },
 ];
 
@@ -152,7 +171,7 @@ export const WHY_CHOOSE = [
   {
     id: 1,
     title: 'Experienced Doctor',
-    description: '5+ years of authentic Ayurvedic clinical practice.',
+    description: '7+ years of authentic Ayurvedic clinical practice.',
   },
   {
     id: 2,
@@ -242,18 +261,6 @@ export const TESTIMONIALS = [
   }
 ];
 
-export const GALLERY = [
-  { id: 1, title: 'Clinic Exterior', category: 'Clinic', image: IMAGES.clinic, tall: false },
-  { id: 2, title: 'Consultation', category: 'Doctor', image: IMAGES.doctor, tall: true },
-  { id: 3, title: 'Herbal Medicines', category: 'Medicines', image: IMAGES.herbs, tall: false },
-  { id: 4, title: 'Abhyanga Therapy', category: 'Panchakarma', image: IMAGES.massage, tall: true },
-  { id: 5, title: 'Reception Area', category: 'Reception', image: IMAGES.reception, tall: false },
-  { id: 6, title: 'Treatment Room', category: 'Treatment Rooms', image: IMAGES.treatmentRoom, tall: false },
-  { id: 7, title: 'Medicated Oils', category: 'Medicines', image: IMAGES.oils, tall: true },
-  { id: 8, title: 'Wellness Space', category: 'Clinic', image: IMAGES.yoga, tall: false },
-  { id: 9, title: 'Shirodhara Setup', category: 'Panchakarma', image: IMAGES.oils, tall: false },
-];
-
 export const FAQS = [
   {
     id: 1,
@@ -265,7 +272,7 @@ export const FAQS = [
     id: 2,
     question: 'Who is the consulting doctor?',
     answer:
-      'Dr. Gauri Patil, BAMS (Ayurvedacharya), leads the clinic with 5+ years of experience in Ayurveda and Panchakarma.',
+      'Dr. Gauri Patil, BAMS (Ayurvedacharya), leads the clinic with 7+ years of experience in Ayurveda and Panchakarma.',
   },
   {
     id: 3,
@@ -325,28 +332,28 @@ export const FAQS = [
 
 export const TIMELINE = [
   {
-    year: '2012',
+    year: '2018',
     title: 'BAMS Graduation',
     description: 'Completed Ayurvedacharya with distinction and clinical training.',
   },
   {
-    year: '2014',
+    year: '2019',
     title: 'Clinical Practice Begins',
     description: 'Started dedicated outpatient care focused on chronic lifestyle disorders.',
   },
   {
-    year: '2018',
-    title: 'Panchakarma Expansion',
-    description: 'Introduced full Panchakarma suites with classical detox protocols.',
+    year: '2024',
+    title: 'MD Post Graduation',
+    description: 'Completed Post Graduation in Ayurvedacharya with clinical training.',
   },
   {
-    year: '2022',
-    title: '7500+ Patients',
+    year: '2026',
+    title: '1000+ Patients',
     description: 'Reached a milestone of trusted care across Maharashtra families.',
   },
   {
     year: 'Present',
-    title: 'Shree Vishwa Prabha',
+    title: 'Shree Vishwa Prabha Ayurved & Panchakarma Clinic',
     description: 'Leading a modern Ayurvedic clinic rooted in authentic healing.',
   },
 ];

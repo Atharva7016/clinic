@@ -10,7 +10,6 @@ import {
   WHY_CHOOSE_MR,
   FAQS_MR,
   TIMELINE_MR,
-  GALLERY_MR,
   TESTIMONIALS_MR,
   DISEASE_LABELS_MR,
 } from '../i18n/contentMr';
@@ -21,7 +20,6 @@ import {
   WHY_CHOOSE,
   FAQS,
   TIMELINE,
-  GALLERY,
   TESTIMONIALS,
 } from '../data/content';
 
@@ -116,7 +114,6 @@ export function LanguageProvider({ children }) {
         whyChoose: WHY_CHOOSE,
         faqs: FAQS,
         timeline: TIMELINE,
-        gallery: GALLERY,
         testimonials: TESTIMONIALS,
         diseaseLabel: (title) => title,
         localizeTestimonials: (list) => list,
@@ -138,7 +135,6 @@ export function LanguageProvider({ children }) {
         const patch = TIMELINE_MR[item.year];
         return patch ? { ...item, ...patch } : item;
       }),
-      gallery: mergeById(GALLERY, GALLERY_MR),
       testimonials: localizeTestimonials(TESTIMONIALS, TESTIMONIALS_MR),
       diseaseLabel: (title) => DISEASE_LABELS_MR[title] || title,
       localizeTestimonials: (list) => localizeTestimonials(list, TESTIMONIALS_MR),
