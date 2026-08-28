@@ -15,9 +15,12 @@ function Treatments({ limit, showHeading = true }) {
   const { t, content, isMr } = useLanguage();
   const { treatments, loading, error, refetch } = useTreatments();
 
-  const usingFallback = treatments.length === 0 && !error && !loading;
-  const source = treatments.length > 0 ? treatments : error ? [] : content.treatments;
+  const hasStaticFallback = content.treatments.length > 0;
+  const source =
+    treatments.length > 0 ? treatments : hasStaticFallback ? content.treatments : [];
   const items = limit ? source.slice(0, limit) : source;
+  const showSkeleton = loading && items.length === 0;
+  const usingFallback = treatments.length === 0;
 
   const displayTitle = (item) => {
     if (usingFallback) return item.title;
@@ -35,9 +38,9 @@ function Treatments({ limit, showHeading = true }) {
           />
         )}
 
-        {loading && <Skeleton count={limit || 6} />}
+        {showSkeleton && <Skeleton count={limit || 6} />}
 
-        {!loading && error && treatments.length === 0 && (
+        {!showSkeleton && error && treatments.length === 0 && !hasStaticFallback && (
           <ErrorState
             title={t('treatments.loadError')}
             message={error.message}
@@ -45,14 +48,14 @@ function Treatments({ limit, showHeading = true }) {
           />
         )}
 
-        {!loading && !error && items.length === 0 && (
+        {!showSkeleton && !error && items.length === 0 && (
           <EmptyState
             title={t('treatments.emptyTitle')}
             message={t('treatments.emptyMessage')}
           />
         )}
 
-        {!loading && items.length > 0 && (
+        {!showSkeleton && items.length > 0 && (
           <>
             <motion.div
               className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-6"
@@ -72,7 +75,7 @@ function Treatments({ limit, showHeading = true }) {
                       src={item.image}
                       alt={`${displayTitle(item)} Ayurvedic treatment`}
                       className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                      loading="lazy"
+                      loading={usingFallback ? 'eager' : 'lazy'}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/50 to-transparent opacity-60" />
                   </div>
@@ -86,7 +89,7 @@ function Treatments({ limit, showHeading = true }) {
           </>
         )}
 
-        {limit && !loading && items.length > 0 && (
+        {limit && items.length > 0 && (
           <div className="mt-10 text-center">
             <Link to="/treatments" className="btn-ghost">
               {t('treatments.viewAll')}

@@ -40,7 +40,7 @@ export const CLINIC = {
     facebook: 'https://www.facebook.com/share/19HLxT2jEp/',
     instagram:
       'https://www.instagram.com/shree_vishwaprabha_ayurveda?igsh=MTdwYzJwNmo2NWUydg==',
-    youtube: 'https://youtube.com',
+    youtube: 'https://www.youtube.com/@ShreeVishwaPrabha',
   },
 };
 

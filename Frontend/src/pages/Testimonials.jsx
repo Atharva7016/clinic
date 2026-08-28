@@ -13,13 +13,16 @@ import { FaStar } from 'react-icons/fa';
 import { IMAGES } from '../data/clinic';
 import { useLanguage } from '../context/LanguageContext';
 import { useTestimonials } from '../hooks/useTestimonials';
-import { fadeUp, staggerContainer, viewportOnce } from '../utils/motion';
+import { fadeUp, staggerContainer } from '../utils/motion';
 
 function TestimonialsPage() {
   const { t, content } = useLanguage();
   const { testimonials, loading, error, refetch } = useTestimonials();
-  const raw = testimonials.length > 0 ? testimonials : error ? [] : content.testimonials;
+  const hasStaticFallback = content.testimonials.length > 0;
+  const raw =
+    testimonials.length > 0 ? testimonials : hasStaticFallback ? content.testimonials : [];
   const list = content.localizeTestimonials(raw);
+  const showSkeleton = loading && list.length === 0;
 
   return (
     <>
@@ -37,9 +40,9 @@ function TestimonialsPage() {
 
       <section className="section-padding bg-secondary-soft">
         <div className="container-clinic">
-          {loading && <Skeleton count={3} />}
+          {showSkeleton && <Skeleton count={3} />}
 
-          {!loading && error && testimonials.length === 0 && (
+          {!showSkeleton && error && testimonials.length === 0 && !hasStaticFallback && (
             <ErrorState
               title={t('testimonials.eyebrow')}
               message={error.message}
@@ -47,17 +50,16 @@ function TestimonialsPage() {
             />
           )}
 
-          {!loading && !error && list.length === 0 && (
+          {!showSkeleton && !error && list.length === 0 && (
             <EmptyState title={t('testimonials.title')} message={t('testimonials.subtitle')} />
           )}
 
-          {!loading && list.length > 0 && (
+          {!showSkeleton && list.length > 0 && (
             <motion.div
               className="grid gap-5 md:grid-cols-2 lg:grid-cols-3"
               variants={staggerContainer}
               initial="hidden"
-              whileInView="visible"
-              viewport={viewportOnce}
+              animate="visible"
             >
               {list.map((item) => (
                 <motion.article

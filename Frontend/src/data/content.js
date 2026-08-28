@@ -272,7 +272,7 @@ export const FAQS = [
     id: 2,
     question: 'Who is the consulting doctor?',
     answer:
-      'Dr. Gauri Patil, BAMS (Ayurvedacharya), leads the clinic with 7+ years of experience in Ayurveda and Panchakarma.',
+      'Dr. Gauri Patil, BAMS MD(Ayurvedacharya), leads the clinic with 7+ years of experience in Ayurveda and Panchakarma.',
   },
   {
     id: 3,

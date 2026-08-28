@@ -11,14 +11,17 @@ import EmptyState from '../EmptyState';
 import ErrorState from '../ErrorState';
 import { useLanguage } from '../../context/LanguageContext';
 import { useTestimonials } from '../../hooks/useTestimonials';
-import { zoomIn, viewportOnce } from '../../utils/motion';
+import { zoomIn } from '../../utils/motion';
 import '../../styles/components.css';
 
 function Testimonials({ showHeading = true, showCta = true }) {
   const { t, content } = useLanguage();
   const { testimonials, loading, error, refetch } = useTestimonials();
-  const raw = testimonials.length > 0 ? testimonials : error ? [] : content.testimonials;
+  const hasStaticFallback = content.testimonials.length > 0;
+  const raw =
+    testimonials.length > 0 ? testimonials : hasStaticFallback ? content.testimonials : [];
   const list = content.localizeTestimonials(raw);
+  const showSkeleton = loading && list.length === 0;
   const [index, setIndex] = useState(0);
   const total = list.length;
   const current = list[index] || null;
@@ -63,9 +66,9 @@ function Testimonials({ showHeading = true, showCta = true }) {
           />
         )}
 
-        {loading && <Skeleton variant="testimonial" />}
+        {showSkeleton && <Skeleton variant="testimonial" />}
 
-        {!loading && error && testimonials.length === 0 && (
+        {!showSkeleton && error && testimonials.length === 0 && !hasStaticFallback && (
           <ErrorState
             title={t('testimonials.eyebrow')}
             message={error.message}
@@ -73,20 +76,19 @@ function Testimonials({ showHeading = true, showCta = true }) {
           />
         )}
 
-        {!loading && !error && list.length === 0 && (
+        {!showSkeleton && !error && list.length === 0 && (
           <EmptyState
             title={t('testimonials.title')}
             message={t('testimonials.subtitle')}
           />
         )}
 
-        {!loading && current && (
+        {!showSkeleton && current && (
           <motion.div
             className="relative mx-auto max-w-3xl"
             variants={zoomIn}
             initial="hidden"
-            whileInView="visible"
-            viewport={viewportOnce}
+            animate="visible"
           >
             <div
               className="overflow-hidden rounded-2xl border border-secondary bg-white p-5 shadow-soft touch-pan-y sm:rounded-[2rem] sm:p-8 md:p-12"
@@ -175,7 +177,7 @@ function Testimonials({ showHeading = true, showCta = true }) {
           </motion.div>
         )}
 
-        {showCta && !loading && list.length > 0 && (
+        {showCta && list.length > 0 && (
           <div className="mt-8 text-center sm:mt-10">
             <Link to="/testimonials" className="btn-ghost">
               {t('testimonials.viewAll')}
