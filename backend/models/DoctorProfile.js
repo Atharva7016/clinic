@@ -11,7 +11,7 @@ const doctorProfileSchema = new mongoose.Schema(
       trim: true,
       default: 'BAMS, MD(Ayu)',
     },
-    experienceYears: { type: Number, default: 5, min: 0 },
+    experienceYears: { type: Number, default: 7, min: 0 },
     specialization: {
       type: String,
       trim: true,
